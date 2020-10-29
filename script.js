@@ -1,18 +1,17 @@
-let divFilms = document.querySelector(".films");
-let divPeople = document.querySelector(".people");
-let divPlanets = document.querySelector(".planets");
-let divSpecies = document.querySelector(".species");
-let divStarShips = document.querySelector(".starships");
-let divVehicles = document.querySelector(".vehicles");
-
+let divFilms = document.getElementById("films")
+let divPeople = document.getElementById("people");
+let divPlanets = document.getElementById("planets");
+let divSpecies = document.getElementById("species");
+let divStarShips = document.getElementById("starships");
+let divVehicles = document.getElementById("vehicles");
 
 const urls = [
-	'https://swapi.dev/api/films/1',
-	'https://swapi.dev/api/people/1',
-	'https://swapi.dev/api/planets/1',
-	'https://swapi.dev/api/species/1',
-	'https://swapi.dev/api/starships/1',
-   	'https://swapi.dev/api/vehicles/1'
+	'https://swapi.dev/api/films/',
+	'https://swapi.dev/api/people/',
+	'https://swapi.dev/api/planets/',
+	'https://swapi.dev/api/species/',
+	'https://swapi.dev/api/starships/',
+   	'https://swapi.dev/api/vehicles/'
 ];
 
 const getAllData = async function () {
@@ -23,6 +22,7 @@ const getAllData = async function () {
         return response.json();
       }),
     );
+    showData(divFilms, films);
     console.log("films", films);
     console.log("people", people);
     console.log("planets", planets);
@@ -34,12 +34,15 @@ const getAllData = async function () {
   }
 };
 
-const showDataFilms = (data)  => {
-	data.forEach(dt => {
-		var pElement = document.createElement("p");
-		pElement.appendChild(document.createTextNode(dt));
-		divFilms.append(pElement);
-	}
+const showData = (element, jsondata)  => {
+	let ele = element;
+	jsondata.forEach(data => { 
+		const pEle = document.createElement(‘p’);
+    	pEle.innerText = data.text();
+    	ele.append(pEle);
+	})
 }
+
+getAllData();
 
 
