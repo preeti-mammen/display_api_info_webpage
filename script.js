@@ -1,9 +1,9 @@
-let divFilms = document.getElementById("films")
-let divPeople = document.getElementById("people");
-let divPlanets = document.getElementById("planets");
-let divSpecies = document.getElementById("species");
-let divStarShips = document.getElementById("starships");
-let divVehicles = document.getElementById("vehicles");
+let filmData = document.getElementById("filmData")
+let peopleData = document.getElementById("peopleData");
+let divPlanets = document.getElementById("planetsData");
+let divSpecies = document.getElementById("speciesData");
+let divStarShips = document.getElementById("starshipsData");
+let divVehicles = document.getElementById("vehiclesData");
 
 const urls = [
 	'https://swapi.dev/api/films/',
@@ -11,38 +11,74 @@ const urls = [
 	'https://swapi.dev/api/planets/',
 	'https://swapi.dev/api/species/',
 	'https://swapi.dev/api/starships/',
-   	'https://swapi.dev/api/vehicles/'
+  'https://swapi.dev/api/vehicles/'
 ];
+
 
 const getAllData = async function () {
   try {
-    const [films, people, planets, species, starships, vehicles] = await Promise.allSettled(
+    const [films, peoples, planets, species, starships, vehicles] = await Promise.allSettled(
       urls.map(async function (url) {
         const response = await fetch(url);
-        return response.json();
+        var data = await response.json();
+        return data;
       }),
     );
-    showData(divFilms, films);
-    console.log("films", films);
-    console.log("people", people);
-    console.log("planets", planets);
-    console.log("species", species);
-    console.log("starships", starships);
-    console.log("vehicles", vehicles);
+    console.log(films.value.results);
+    console.log(peoples.value.results);
+    console.log(planets.value.results);
+    console.log(species.value.results);
+    console.log(starships.value.results);
+    console.log(vehicles.value.results);
+    showfilmdata(films.value.results);
+    showpeopledata(peoples.value.results);
   } catch (err) {
     console.log("Error Encountered !! ", err);
   }
 };
 
-const showData = (element, jsondata)  => {
-	let ele = element;
-	jsondata.forEach(data => { 
-		const pEle = document.createElement(‘p’);
-    	pEle.innerText = data.text();
-    	ele.append(pEle);
-	})
-}
 
-getAllData();
+function showfilmdata(data) { 
+  let tab =  
+      `<tr> 
+        <th>Title</th> 
+        <th>Producer</th> 
+        <th>Director</th> 
+       </tr>`; 
+  
+  // Loop to access all rows  
+  for (let r of data) { 
+      tab += `<tr>  
+  <td>${r.title} </td> 
+  <td>${r.producer}</td> 
+  <td>${r.director}</td>     
+</tr>`; 
+  } 
+  // Setting innerHTML as tab variable 
+  filmData.innerHTML = tab; 
+} 
+
+function showpeopledata(data) { 
+  let tab =  
+      `<tr> 
+        <th>Name</th> 
+        <th>Gender</th> 
+        <th>HomeWorld</th> 
+       </tr>`; 
+  
+  // Loop to access all rows  
+  for (let r of data) { 
+      tab += `<tr>  
+  <td>${r.name} </td> 
+  <td>${r.gender}</td> 
+  <td>${r.homeworld}</td>     
+</tr>`; 
+  } 
+  // Setting innerHTML as tab variable 
+  peopleData.innerHTML = tab; 
+} 
+
+
+
 
 
