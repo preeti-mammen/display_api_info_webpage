@@ -1,0 +1,39 @@
+body{
+	background: linear-gradient(to right, rgb(153, 202, 184), rgb(53, 84, 236));
+}
+
+h1, p{
+	text-align: center;
+}
+
+h1{
+	font-family: 'Grandstander';
+	font-size: 3em;
+	color: 
+}
+
+p{
+	font-size: 1.5em;
+	font-weight: 200px;
+	font-family: 'Henny Penny'
+}
+
+h2{
+	font-family: 'Grandstander';
+}
+
+.container{
+	display: grid;
+    grid-gap: 50px;
+    padding: 10px;
+    margin: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+
+.box{
+	display: flex;
+	align-content: center;
+	justify-content: center;
+	border-radius: 5;
+	border-style: solid;
+}
