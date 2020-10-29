@@ -8,8 +8,7 @@ h1, p{
 
 h1{
 	font-family: 'Grandstander';
-	font-size: 3em;
-	color: 
+	font-size: 3em; 
 }
 
 p{
@@ -31,9 +30,13 @@ h2{
 }
 
 .box{
-	display: flex;
+	display: grid;
 	align-content: center;
 	justify-content: center;
 	border-radius: 5;
 	border-style: solid;
 }
+
+table, th, td {
+	border: 0.5px solid black;
+  }
