@@ -15,10 +15,10 @@ const urls = [
 ];
 
 
-const getAllData = async function () {
+const getAllData = async function (allUrls) {
   try {
     const [films, peoples, planets, species, starships, vehicles] = await Promise.allSettled(
-      urls.map(async function (url) {
+      allUrls.map(async function (url) {
         const response = await fetch(url);
         var data = await response.json();
         return data;
@@ -78,7 +78,7 @@ function showpeopledata(data) {
   peopleData.innerHTML = tab; 
 } 
 
-
+getAllData(urls);
 
 
 
